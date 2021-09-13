@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		{{ message }}
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+{% endfor %}
+{% if current_user.is_authenticated %}
+	<h1>Add Blog Post...:</h1>
+	<br/>
+<!-- Down here put the form itself -->
+<div class="shadow p-3 mb-k bg-light rounded">
+	<form method='Post'>
+		{{ form.hidden_tag()}} <!-- this creates CSRF token -->
+
+		{{ form.title.label(
+		class="form-label") }} <!-- this is the label from the server file line 13 -->
+		
+		{{ form.title(
+		class="form-control") }}
+		<br/>
+			{{ form.author.label(
+		class="form-label") }} <!-- this is the label from the server file line 13 -->
+		
+		{{ form.author(
+		class="form-control") }}
+		<br/>
+		{{ form.slug.label(
+		class="form-label") }} <!-- this is the label from the server file line 13 -->
+		
+		{{ form.slug(
+		class="form-control") }}
+
+		<br/>
+		{{ form.content.label(
+		class="form-label") }} <!-- this is the label from the server file line 13 -->
+		
+		{{ form.content(
+		class="form-control", rows='10') }}
+
+		<br/>
+		{{ form.submit(
+		class="btn btn-secondary") }} <!-- this is a submit button -->
+	</form>
+
+{% else %}
+<h2> Must Be Logged In... </h2>
+<p>Sorry, You must be logged in to access this page!</p>
+<a href="{{url_for('login')}}">You May Login Here</a>
+
+{% endif %}
+
+{% endblock %}

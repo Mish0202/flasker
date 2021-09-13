@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		{{ message }}
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	
+{% endfor %}
+
+	<h1>Login!</h1>
+	<br/>
+	<br/>
+
+<div class="shadow p-3 mb-k bg-light rounded">
+	<form method='Post'>
+		{{ form.hidden_tag()}} <!-- this creates CSRF token -->
+
+		{{ form.username.label(
+		class="form-label") }} <!-- this is the label from the server file line 13 -->
+		
+		{{ form.username(
+		class="form-control") }}
+		<br/>
+		{{ form.password.label(
+		class="form-label") }} <!-- this is the label from the server file line 13 -->
+		
+		{{ form.password(
+		class="form-control") }}
+		<br/>
+			
+		{{ form.submit(
+		class="btn btn-secondary") }} <!-- this is a submit button -->
+	</form>
+</div>
+
+{% endblock %}

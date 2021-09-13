@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+	<h1>Hello, World!</h1>
+
+	<p> This is not my first webpage!!!</p>
+
+	<p> My name is {{ first_name }}</p> 
+	<!-- я сохранил строку выше в этом файле, но 
+	не сохранил инфо с first_name  в сервер файле
+	и веб страница показала текст отсюда
+	но не показала имени, которое было введено,
+	но не сохранено в файле приложении.-->
+
+	<!-- мы можем так передать на страницу (через джинжа)
+		все = списки, объекты и проч-->
+	<p>{{ stuff|title}} </p>
+
+	<h3>Favorite Pizza</h3>
+
+	{% for topping in favorite_pizza %}
+
+		{% if topping == 41 %}
+			{{ topping + 100 }}<br/>
+		{% else %}
+			{{topping}}<br/>
+		{% endif %}
+	{% endfor %}
+
+{% endblock %}
+
+
+
+
+
